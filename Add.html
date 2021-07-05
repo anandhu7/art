@@ -1,0 +1,214 @@
+<?php
+// session_start();
+// if (!isset($_SESSION['loginid']))
+//  {
+//     header("Location:index.html");
+//  }
+ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Add.css">
+    <script>
+
+
+
+
+         
+function productvalidate()
+                    {
+                        var subcategory = document.getElementById('dropdownsub').value;
+                        var category = document.getElementById('dropdowncat').value;
+                        var brand  = document.getElementById('dropdownbrand').value;
+                        var productName = document.getElementById('productName').value;
+                        var size = document.getElementById('size').value;
+                        var units= document.getElementById('dropdownunits').value;
+                        var quantity = document.getElementById('quantity').value;
+                        var expdate = document.getElementById('date').value;
+                        var productdesc =document.getElementById('productdesc').value;
+                        var price =document.getElementById('price').value;
+                        var color =document.getElementById('color').value;
+                        var FileUploadPath = document.getElementById('image').value;
+                        
+                        var productnameRegx=  /^[a-z A-Z 0-9 -'@#$!]{3,40}$/;
+                        var sizeRegx = /^[0-9 a-zA-Z]{0,10}$/;
+                        var quantityRegx =/^[0-9 a-zA-Z]{0,15}$/;
+                        var priceRegx= /^[0-9 a-zA-Z]{0,15}$/;
+                        var colorRgx =  /^[a-z A-Z]{3,20}$/;
+
+
+                        if(productName=="")
+                                {
+                                    alert("product name is empty");
+                                    return false;
+                                }
+                                else
+                                {
+                                    if(!(productnameRegx.test(productName)))
+                                    {
+                                    alert("Please enter a valid product name");
+                                    return false;
+                                    }
+                                }
+                         if(size=="")
+                                {
+                                    alert("size  is empty");
+                                    return false;
+                                }
+                                else
+                                {
+                                    if(!(sizeRegx.test(size))  && size =='None')
+                                    {
+                                    alert("Please enter a valid size");
+                                    return false;
+                                    }
+                                } 
+                                if(units=="")
+                                {
+                                    alert("units is not selected");
+                                    return false;
+                                } 
+                            if(quantity=="")
+                                {
+                                    alert("quantity  is empty");
+                                    return false;
+                                }
+                                else
+                                {
+                                    if(!(quantityRegx.test(quantity)))
+                                    {
+                                    alert("Please enter a valid quantity");
+                                    return false;
+                                    }
+                                } 
+                           if(price=="")
+                                {
+                                    alert("price is empty");
+                                    return false;
+                                }
+                                else
+                                {
+                                    if(!(priceRegx.test(price)))
+                                    {
+                                    alert("Please enter a valid price");
+                                    return false;
+                                    }
+                                } 
+                                if(color=="")
+                                {
+                                    alert("color is empty");
+                                    return false;
+                                }
+                                else
+                                {
+                                    if(!(colorRgx.test(color)) && color =='None')
+                                    {
+                                    alert("Please enter a valid color");
+                                    return false;
+                                    }
+                                } 
+                            if(expdate=="")
+                                {
+                                    alert("expdate name is empty");
+                                    return false;
+                                }
+                            if(productdesc=="")
+                                {
+                                    alert("product description name is empty");
+                                    return false;
+                                } 
+                        if(category=="")
+                                {
+                                    alert("category is not selected");
+                                    return false;
+                                } 
+                        if(brand=="")
+                                {
+                                    alert("brand is not selected");
+                                    return false;
+                                } 
+                        if(subcategory=="")
+                                {
+                                    alert("subcategory is not selected");
+                                    return false;
+                                }  
+                                   
+   
+                                  
+                            
+
+                         if (FileUploadPath == '') {
+                                alert("Please upload an image");
+
+                                             } 
+                                else {
+                                                var Extension = FileUploadPath.substring(
+                                                    FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+                                        if ( Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") 
+                                        {
+                                            return true;            
+                                                } 
+
+                                        //The file upload is NOT an image
+                                        else {     FileUploadPath.value == ''; 
+                                                        alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+                                                    
+                                                    return false; 
+                                            }   
+                                    } 
+                                            
+                        
+         return true;
+}            
+
+    </script>
+     
+</head>
+<body>
+
+
+
+
+
+
+<!-- product form-->
+
+<div class="product1">
+<form class="productform" id="productform" onsubmit="return productvalidate();"  action="product.php" method="POST"  enctype="multipart/form-data" style='display: none;' >
+
+<span>  
+
+    </span>
+        </div>
+        <div class="textbox">
+        <span class="inline">
+            <input type="date" id="date" name="dateofadd" placeholder="Date">
+            <input type="text" id="artname" name="artname" placeholder=artname>
+          </span>
+        </div>
+        <input type="file" id="image" name="file" placeholder="image" onchange="return ValidateFileUpload()">
+        <div>
+        <input type="textarea" id="artdesc" name="artdesc" placeholder="description"  style="height:70px;">
+       </div>
+          <div>     <input type="text" id="price" name="price" placeholder="price">
+            <input type="text" id="size" name="size" placeholder="size"></div>
+        <div class="textbox">
+        <button type="submit" value="submit" name="submit" id="btn1" >ADD</button>
+        </div>
+
+    
+    </form>
+</div>
+
+
+
+</body>
+
+
+
+
+</html>
